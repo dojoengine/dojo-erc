@@ -1,0 +1,20 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly-2022-11-03
+      - uses: Swatinem/rust-cache@v2
+      # TODO
+      # - run: cargo +nightly-2022-11-03 run --bin dojo-test
